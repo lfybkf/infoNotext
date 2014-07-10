@@ -1,0 +1,58 @@
+=====================
+Properties prop = new Properties();
+//загружаем файл с properties
+prop.load(new InputStreamReader(new FileInputStream("example.properties"),"UTF-8"));
+ 
+//получаем properties
+System.out.println(prop.getProperty("myName"));
+System.out.println(prop.getProperty("myBlog"));
+
+//задаем properties
+prop.setProperty("myName","Alex");
+prop.setProperty("myBlog","showtrip.ru");
+prop.store(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("example.properties"), "UTF-8")), null);
+
+=======================
+resource
+
+Properties prop = new Properties();
+InputStream in = getClass().getResourceAsStream("foo.properties");
+prop.load(in);
+in.close();
+
+======================
+Spring Security Hello World Java Config
+http://habrahabr.ru/post/226791/
+
+Spring 3 MVC + Spring Security + Hibernate
+http://habrahabr.ru/post/111102/
+===========================
+Игровой сервер на Scala и Akka
+
+http://habrahabr.ru/post/229045/
+======================
+Отладка Java приложения btrace
+
+http://habrahabr.ru/post/227639/
+https://kenai.com/projects/btrace/pages/UserGuide
+http://www.javawebdevelop.com/658682/
+========================
+jps
+jvm with pid
+-q   Suppress the output of the class name, JAR file name, and arguments passed to the main method, producing only a list of local VM identifiers.
+-m   Output the arguments passed to the main method. The output may be null for embedded JVMs.
+-l   Output the full package name for the application's main class or the full path name to the application's JAR file.
+-v   Output the arguments passed to the JVM.
+-V   Output the arguments passed to the JVM through the flags file (the .hotspotrc file or the file specified by the -XX:Flags=<filename> argument).
+http://docs.oracle.com/javase/6/docs/technotes/tools/share/jps.html
+=========================
+Java8
+
+http://habrahabr.ru/post/216431/
+======================
+time
+
+long t0 = System.nanoTime();
+long t1 = System.nanoTime();
+long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+=====================

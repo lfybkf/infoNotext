@@ -1,0 +1,20 @@
+===================
+conf
+
+ebean.ddl.generate=false
+ebean.ddl.run=false
+ebean.logging=sql
+ebean.debug.sql=true
+
+datasource.default=pg
+
+datasource.pg.username=postgres
+datasource.pg.password=pg#84sql@dm
+datasource.pg.databaseUrl=jdbc:postgresql://dmsq1pgdb02.caesarsint.com:5432/bonnethead
+datasource.pg.heartbeatsql=select 1
+datasource.pg.databaseDriver=org.postgresql.Driver
+==========================
+limit
+
+query.setMaxRows(50)
+==========================

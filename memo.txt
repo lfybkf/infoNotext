@@ -1,0 +1,43 @@
+pk.grigory.perepechko
+nyaroshevich
+toxxus
+=====================
+перевод
+http://translate.google.ru/translate_a/t?client=x&text='encapsulate'&sl='en'&tl='en'
+http://translate.google.ru/translate_a/t?client=x&text=encapsulate&sl=en&tl=en
+=======================
+стоматолог
+
+16 апреля 18:45
+проходная завода горизонт, 2 этаж в хвосте 
+ул Куйбышева 22 каб 207
+=======================
+web money
+Сергеев Станислав Сергеевич (stas_virus@mail.ru) Яндекс-деньги 41001783574114 Webmoney R334525191458
+Конторович WEB money - Z400840416211 и вот этот R213609275586
+============================
+вейник
+375 29 6978360
+=================
+вода канализация
+89082380056 - сергей
+=====================
+репетитор
+8 029 173 39 05 Анатолий григорьевич
+=======================
+интернет
+
+контракт 91532089
+номер услуги ЕРИП 410561
+последняя операция ЕРИП 597668826
+========================
+hr информация для сотрудников
+https://docs.google.com/document/d/1MEEtUvA1PBdLD_xZTnxNw4iM6C65Ft34zKFaV9VS43g/edit#
+=========================
+todo postgres
+
+в обоих БД исправить ограничение в configuration.server_whl_accounts
+-CONSTRAINT "server_whl_accounts_PK" PRIMARY KEY (server_id, whl_account_id)
++CONSTRAINT "server_whl_accounts_PK" PRIMARY KEY (whl_account_id)
+=========================
+

@@ -1,0 +1,87 @@
+xml linq json
+
+using System.Web.Script.Serialization;
+using System.Xml.Linq;
+
+var xml = 
+	@"<Columns>
+          <Column Name=""key1"" DataType=""System.Boolean"">True</Column>
+          <Column Name=""key2"" DataType=""System.String"">Hello World</Column>
+          <Column Name=""key3"" DataType=""System.Int32"">999</Column>
+        </Columns>";
+var dic = XDocument.Parse(xml).Descendants("Column")
+	.ToDictionary(
+		c => c.Attribute("Name").Value
+		, c => Convert.ChangeType(c.Value, typeof(string).Assembly.GetType(c.Attribute("DataType").Value, true))
+	);
+var json = new JavaScriptSerializer().Serialize(dic);
+Console.WriteLine(json);
+======================================
+xml json
+
+XmlDocument doc = new XmlDocument();
+doc.LoadXml(xml);
+string jsonText = JsonConvert.SerializeXmlNode(doc);
+
+// To convert JSON text contained in string json into an XML node
+XmlDocument doc = JsonConvert.DeserializeXmlNode(json);
+================================
+Thread.Sleep(2000);
+================================
+FolderBrowserDialog dialog = new FolderBrowserDialog();
+dialog.Description = "Choose folder with game content";
+dialog.RootFolder = Environment.SpecialFolder.MyComputer;
+dialog.ShowNewFolderButton = false;
+if (folderGameContent != null)
+	dialog.SelectedPath = folderGameContent;
+
+//result
+DialogResult res = dialog.ShowDialog();
+if (res == System.Windows.Forms.DialogResult.OK)
+{
+	folderGameContent = dialog.SelectedPath;
+}//if
+==============================
+XmlElement node = parent.OwnerDocument.CreateElement("SubTexture");
+node.SetAttribute("name", name);
+parent.AppendChild(node);
+=============================
+http://professorweb.ru/my/LINQ
+
+string[] cars = { "Nissan", "Aston Martin", "Chevrolet", "Alfa Romeo"};
+var sequence = cars.Select(p => new { Name = p, Len = p.Length });
+foreach (var i in sequence)
+        Console.WriteLine(i);
+
+OUT:
+{Name = Nissan, Len = 6}
+{Name = Aston Martin, Len = 12}
+...
+==============================
+http://professorweb.ru/my/LINQ
+string[] cars = { "Nissan", "Aston Martin", "Chevrolet", "Alfa Romeo"};
+IEnumerable<char> chars = cars.SelectMany(p => p.ToArray());
+foreach (char c in chars)
+        Console.Write(c + " ");
+
+OUT: N i s s a n A s t o n ...
+============================
+string xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Employees><Employee type=\"Programmer\" language=\"Russian\"><FirstName>Alex</FirstName><LastName>Erohin</LastName></Employee></Employees>";
+XElement xElement = XElement.Parse(xml);
+==============================
+linq
+
+persons[0] = new Person { PersonID = 1, car = "Ferrari" }; 
+persons[1] = new Person { PersonID = 1, car = "BMW"     }; 
+persons[2] = new Person { PersonID = 2, car = "Audi"    };
+
+var results = from p in persons
+              group p.car by p.PersonId into g
+              select new { PersonID = g.Key, Cars = g.ToList() };
+
+var results = persons.GroupBy(p => p.PersonId, p => p.car,   (key, g) => new { PersonId = key, Cars = g.ToList() });
+============================
+http://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b
+=============================
+
+

@@ -1,0 +1,135 @@
+ip dns
+
+dmsq1pgdb01.caesarsint.com  172.23.5.26
+dmsq1pgdb02.caesarsint.com  172.23.5.27
+dmsq1pgdb03.caesarsint.com  172.23.5.60
+===================
+sudo service postgresql-9.3 start
+sudo service postgresql-9.3 stop
+sudo service postgresql-9.3 restart
+
+/usr/pgsql-9.3/bin/pg_ctl start -D /var/lib/pgsql/9.3/data
+==========================
+чтоб слушал
+	postgresql.conf - listen_addresses='*'
+чтоб принимал соединения с паролем
+	pg_hba.conf
+	host	all 		all		0.0.0.0/0		md5
+
+меням парол
+	ALTER USER postgres WITH PASSWORD 'pg#84sql@dm';
+==========================
+Postgres
+database.name=bonnethead
+database.host=dmsq1pgdb03.caesarsint.com
+database.port=5432
+database.url=jdbc:postgresql://dmsq1pgdb03.caesarsint.com/bonnethead
+database.username=postgres
+database.password=pg#84sql@dm
+==========================
+
+SELECT setval('hammerhead.user_info_user_info_id_seq', 200);
+=============================
+backup
+/usr/bin/pg_dump bonnethead --file=public.sql --schema=public
+/usr/bin/pg_dump bonnethead --file=configuration.sql --schema=configuration
+/usr/bin/pg_dump bonnethead --file=users.sql --schema=users
+/usr/bin/pg_dump bonnethead --file=hammerhead.sql --schema=hammerhead
+/usr/bin/pg_dump bonnethead --file=wallets.sql --schema=wallets --schema-only
+/usr/bin/pg_dump bonnethead --file=wallets_data.sql --schema=wallets --data-only --exclude-table=wallets.transactions
+================================
+replication
+
+master=172.23.5.27
+slave=172.23.5.60
+
+ recovery.conf
+standby_mode = 'on'
+primary_conninfo = 'host=172.23.5.27 port=5432 user=postgres password=pg#84sql@dm'
+trigger_file = '/var/lib/pgsql/9.3/data/stop_replication.trigger'
+
+psql -c "SELECT pg_start_backup('label', true)"
+/var/lib/pgsql/to_slave.sh
+(
+	PGDATA=/var/lib/pgsql/9.3/data
+	rsync -C -a --delete -e ssh --exclude postgresql.conf --exclude postmaster.pid \
+	--exclude postmaster.opts --exclude pg_log --exclude pg_xlog \
+	--exclude recovery.conf $PGDATA/ 172.23.5.60:$PGDATA/
+)
+psql -c "SELECT pg_stop_backup()"
+psql -c "SELECT pg_current_xlog_location()" -h172.23.5.27
+psql -c "SELECT pg_current_xlog_location()" -h172.23.5.60
+=============================
+pg_stat_database
+-Чтение с диска(blks_read) и с кэша (blks_hit)
+-Транзакции коммит(xact_commit) и откат(xact_rollback)
+======================
+pg_stat_all_tables
+-seq_scan = сколько sequential scans
+-seq_tup_read = сколько rows were used during those sequence scan
+-idx_scan and idx_tup_fetch = то же для индексных чтений
+========================
+/usr/pgsql-9.3/share/extension
+create extension unaccent
+select * from pg_extensions
+============================
+select schema_name from information_schema.schemata where schema_name like '%app'
+====================
+create role sbozhko with login password 'sbozhko#dev' valid until 'infinity';
+===================
+session 
+select * from pg_stat_activity where datname like 'hamm%';
+
+drop session
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'TARGET_DB'
+  AND pid <> pg_backend_pid();
+=======================
+How to create a new developer environment
+http://confluence.caesarsint.com/pages/viewpage.action?title=How+to+create+a+new+developer+environment&spaceKey=DBA
+=====================
+array table
+http://www.postgresql.org/docs/9.1/static/functions-array.html
+
+select * from unnest(array['qwe', 'asd'])
+
+with glos as (select string_to_array(unnest, '=') as words from unnest(array['ECARD=E-card', 'TRANSFER=Transfered', 'VISA=Visa'])) 
+select p.paymentorderid, p.type, coalesce(g.words[2], p.type) as Readable
+from pkrapp.payment p
+left join glos g on p.type = g.words[1]
+================================
+nextval('users.users_user_id_seq'::regclass)
+====================
+array
+with tbl as (select 100 as id, 'q,w,e,r' as elements union select 200, 'a,s,d')
+, x as (SELECT id, regexp_split_to_table(elements, ',') AS elem FROM tbl)
+SELECT *, row_number() OVER (PARTITION by id) AS rn
+FROM x;
+==========================
+The following query gives names of all sequences.
+SELECT * FROM pg_class WHERE relkind = 'S';
+
+tables
+SELECT * FROM pg_class WHERE relkind = 'r';
+
+functions
+SELECT * FROM information_schema.routines where routine_name = 'audit_biur_trg'
+======================
+copy insert
+
+select 'insert into users.token_auth_tickets(auth_ticket, access_token) values (''' || auth_ticket || ''', ''' || access_token || ''');' from users.token_auth_tickets
+====================
+with ca as (select casino_account_id, integration_code from configuration.casino_accounts)
+, gr as (select casino_account_id, whl_id, count(*) as cnt from configuration.whl_accounts group by casino_account_id, whl_id)
+select * from gr where cnt > 1
+===============================
+truncate date
+
+date_trunc('field', source)
+field=microseconds milliseconds second minute hour day week month quarter year decade century millennium
+
+update configuration.casino_accounts set create_date = date_trunc('minute', create_date)
+update configuration.whl_accounts set create_date = date_trunc('minute', create_date)
+=================================
+

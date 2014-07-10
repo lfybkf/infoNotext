@@ -1,0 +1,73 @@
+url
+
+http://www.computerhope.com/sethlp.htm
+====================
+Current date in YYYY-MM-DD format. See isodatetime.bat for details
+
+SET mdate=%date:~10,4%-%date:~4,2%-%date:~7,2%
+==================
+link
+
+mklink "D:\logs\1.log" "D:\apache-tomcat-7.0.47\logs\catalina.%mdate%.log"
+===================
+file name without extension
+
+msxsl %1 layout.xsl -o "%~n1.txt" -t
+====================
+ECHO ON - обеспечивает отобpажение команд на экpане по ходу их выполнения;
+ECHO OFF - подавляет отобpажение команд на экpане;
+ECHO [сообщение] - на экpане появляется сообщение вне зависимости от pежима pаботы команды;
+ECHO - на экpане отобpажается текущий pежим pаботы команды (ON или OFF);
+===========================
+FOR %%F IN (1 qwe 3 ttu) DO ECHO %%F
+=>
+1
+qwe
+3
+ttu
+
+@for %%f in (*) do @echo %%f
+=>
+file1.txt
+file2.txt
+...
+==========================
+IF "%NAME%" == "ADAM" GOTO ADAM
+IF "%NAME%" == "JUDY" GOTO JUDY
+
+:ADAM
+ (Adam's login procedure)
+GOTO END
+
+:JUDY
+(JUDY's login procedure)
+GOTO END
+
+:END
+==================
+replace 
+%PATH:str1=str2%
+
+substring 
+%PATH:~10,5% (5 from 10th)
+%PATH:~10% (all from 10th)
+%PATH:~-10% (10 from end)
+
+set s=because the snow is blue
+@echo %s:e=0%   =>b0caus0 th0 snow is blu0
+@echo %s:~4%    =>use the snow is blue
+@echo %s:~4,3%  =>use
+@echo %s:~-4%   =>blue
+==================
+%CD% - expands to the current directory string.
+%DATE% - expands to current date using same format as DATE command.
+%TIME% - expands to current time using same format as TIME command.
+%RANDOM% - expands to a random decimal number between 0 and 32767.
+%ERRORLEVEL% - expands to the current ERRORLEVEL value
+%CMDEXTVERSION% - expands to the current Command Processor Extensions version number.
+%CMDCMDLINE% - expands to the original command line that invoked the Command Processor.
+========================
+read variable from console
+
+set /p var=Type here:
+=====================

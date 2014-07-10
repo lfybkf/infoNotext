@@ -1,0 +1,16 @@
+project webapp generate
+
+mvn archetype:generate -DgroupId=bdb -DartifactId=admins -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+===================================
+mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
+
+ If there's a pom-file
+mvn install:install-file -Dfile=<path-to-file> -DpomFile=<path-to-pomfile>
+ 
+ If the JAR was built by Apache Maven, it'll contain a pom.xml in a subfolder of the META-INF directory
+mvn install:install-file -Dfile=<path-to-file>
+========================================
+javadoc download
+
+mvn eclipse:eclipse -DdownloadJavadocs=true
+========================================

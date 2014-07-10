@@ -1,0 +1,155 @@
+WEB
+login=lgc
+pass=qwerty123456.
+
+micro100@yopmail.com
+arizona2010!
+
+=========================
+PUSH
+(domain)/config/node_app_config/comet.properties
+
+===========================
+CONSOLE
+
+http://{host}:8580/BigConsole/login
+UserName: adminnj
+Password: adminnj
+
+=============================
+CTV login
+
+http://dmsq1app002.caesarsint.com:8572/ctv
+UserName: admin
+Password: admin
+
+=======================
+ALL
+
+\\KaratkouM.cie.caesarsint.com\hammerhead-server
+\\KaratkouM.cie.caesarsint.com\platform
+=========================
+Configure Tomcat
+·         Casino
+mvn bs:casino.config.application-server
+·         CTV
+mvn bs:ctv.config.application-server
+·         Console
+mvn bs:console.config.application-server
+·         Gateway
+mvn bs:gateway.config.application-server
+·         Push
+mvn bs: push.domain.create-and-configure
+ 
+Note: You can use mvn -P configure-all . It will run all command above except for push server.
+============================ 
+Deploy
+·         Casino
+mvn bs:casino.install
+·         CTV
+mvn bs:ctv.install
+·         Console
+mvn bs:install
+·         Gateway
+mvn bs:gateway.install
+·         Push
+mvn bs:push.install
+ 
+Note: You can use mvn -P deploy-all . It will run all command above.
+
+payments 
+mvn bs:deploy
+===========================
+Liquibase
+Update database
+	mvn updateDatabase
+To initialize the database
+	mvn z-reinit-data
+To delete database
+	mvn z-warning-cleanDB
+=================
+ALL
+
+loginname='tesdd001@yopmail.com'
+bigaccountid = 10000000146
+
+======================
+build deploy
+
+http://confluence.caesarsint.com/display/CIETW/Build+and+Deploy+Services+-+Using+build+script+plugin
+===========================
+url
+
+http://dmsq1app002.caesarsint.com:8580/BigConsole
+http://dmsq1app002.caesarsint.com:7970/casinoaccounts/
+http://dmsq1app002.caesarsint.com:9180/encryption
+*http://dmsq1app002.caesarsint.com:9060/providercommunicationservice/v1
+
+==============================
+url properties
+
+casinoaccounts.url=http://localhost:7970/casinoaccounts/rs/casino/v1
+ecard.service.url=http://straight.caesarsint.com:9790/ecard/v1/transactions
+echeck.service.url=http://localhost:7980/Echeck/rs/echeck/v1
+encryption.service.url=https://localhost:9183/encryption/v1/encrypt
+moderator.service.url=http://straight.caesarsint.com:9281/Moderator/v1/validate
+payment.service.url=http://localhost:9380/baccarat/ws/paymentService/v1?wsdl
+providercommunication.url=http://localhost:9060/providercommunicationservice/v1/
+rgcheck.service.url=http://straight.caesarsint.com:9690/RGCheck/rs/rgcheck/v1
+uru.url=http://straight.caesarsint.com:9480/URU/checkID/v1/
+
+=============================
+port
+
+casino (8380 BigDB)
+	8500 ecard (8500 ECardDB)
+		7970 casinoaccounts (*)
+			---------
+		9060 providercommunication (*)
+			(*)
+	7980 echeck (7980 ECheckDB)
+		7970 casinoaccounts (*)
+			---------
+		9060 providercommunication (*)
+			(*)
+	9183 encryption (*)
+		(*)
+	9690 rgcheck ()
+	9480 uru ()
+
+payments (9380 PaymentsDB)
+	7970 casinoaccounts (7970 CasinoAccountDB)
+		---------
+	9580 providercommunication (9060 ProviderCommDB)
+		9180 encryption (9180 EncryptionDB)
+			7680 vault (7680 VaultDB)
+				----------
+		9055 rgcheck ()
+====================================
+#pid por
+CATALINA_PID=/opt/appserv/tomcat/casino.pid
+======================
+db postgres
+http://confluence.caesarsint.com/pages/viewpage.action?title=How+to+create+a+new+developer+environment&spaceKey=DBA
+
+create role dgalagaev with login password 'dgalagaev#DEV1' valid until 'infinity';
+create database dgalagaevdb with owner = dgalagaev template = hammehead_template connection limit = 100;
+
+select 'grant all on schema ' || schema_name || ' to ' || replace(catalog_name,'db',';')
+from information_schema.schemata where schema_name like '%app';
+======================
+how to block user
+
+t_role 
+roleid=22 rolename=LOGIN_SUSPENDED
+
+t_adminrole
+userid=100000001 roleid=22
+======================
+user
+
+t_playerdetails
+============================
+visa ïëàòåæè
+payments
+======================

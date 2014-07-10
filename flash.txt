@@ -1,0 +1,18 @@
+url
+
+http://dmsq1app014.caesarsint.com:8000/roulette-american/web/build.last/?game=cs_usaroulette30a&token=t1200000000&whl=30
+============
+fla json
+
+C:\Program Files (x86)\Adobe\Adobe Flash CS6\Flash.exe
+D:\dev\TexturePacker\bin\TexturePacker.exe
+ --skip-resource  video  particles
+=====================
+klinski
+
+только в baseLayoutComponent можно вкладывать другие компоненты, ключая baselayoutcomponent
+координаты детей при этом считаются от края BaseLayoutComponent, верх лево
+=================
+[30/05/2014 13:24:34] Данила: у кнопки в нашем движке есть понятие TouchArea? или весь размер кнопки таковым является?
+[30/05/2014 13:25:57] klinski: есть стиль hitArea,но он не обязятельный
+===========================

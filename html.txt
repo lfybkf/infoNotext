@@ -1,0 +1,29 @@
+http://css-button-generator.com/
+
+<a href="#" class="css_btn_class">css button</a>
+
+<style type="text/css">
+.css_btn_class {
+	font-size:16px;
+	font-family:Arial;
+}.css_btn_class:hover {
+	background:-moz-linear-gradient( center top, #e8c1e8 5%, #ededed 100% );
+	background:-ms-linear-gradient( top, #e8c1e8 5%, #ededed 100% );
+}.css_btn_class:active {	position:relative;	top:1px;
+}
+</style>
+==========================
+    <div class="edit_down">
+      <ul>
+      	<li class="top">Go to...</li>
+        <li class="item"><a	href="/admins01/objects/whl/2/edit" class="btn">Edit</a></li>
+        <li class="item"><a	href="/admins01/links/auth_type_all/0" class="btn success">AuthType</a></li>
+        <li class="item"><a	href="/admins01/links/auth_type_all/111" class="btn success">AuthType</a></li>
+      </ul>
+    </div>
+
+.edit_down {    display: block;}
+.edit_down ul {  padding: 0;  margin: 0;  list-style-type: none;  }
+.edit_down ul li.item {  float: left;  width: 10em;  display: none;}  
+.edit_down ul:hover .item {    display: list-item;  left: auto;}
+====================================
