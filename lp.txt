@@ -1,5 +1,5 @@
 ﻿
-920 017 1072 1664 5974 72943
+72943 297058642
 ban0dan@qip.ru кранты
 ===============
 codecademy.com g р
@@ -14,9 +14,7 @@ twirpx.com г г
 ulmart lmr р
 =============
 
-sia danila.bulichev П02
-caesarsint.com danila.bulichev П02
-297058642
+
 codeavendgers Laniel о
 teamViewer bulichevd оо
 github l г1
