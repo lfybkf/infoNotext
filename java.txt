@@ -56,3 +56,16 @@ long t0 = System.nanoTime();
 long t1 = System.nanoTime();
 long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
 =====================
+ForkJoinPool pool = new ForkJoinPool(5);
+long count = pool.submit(() -> values.parallelStream().sorted().count()).get();
+======================
+int[] sum = new int[1];
+list.forEach(i -> sum[0] += i);
+return sum[0];
+
+DON't DO IT!!! проблем не оберетесь при параллелизации.
+
+IntStream s = ....
+s.sum(); // PROFIT
+===================
+

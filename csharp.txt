@@ -83,5 +83,11 @@ var results = persons.GroupBy(p => p.PersonId, p => p.car,   (key, g) => new { P
 ============================
 http://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b
 =============================
+linq
+
+var sum = container.Where( a => a>3).Aggregate(0, (a, b) => a + b); 
+var mult = container.Where( a => a>3).Aggregate(1, (a, b) => a * b);
+
+=============================
 
 

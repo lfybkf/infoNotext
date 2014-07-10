@@ -2,10 +2,15 @@ url
 
 http://dmsq1app014.caesarsint.com:8000/roulette-american/web/build.last/?game=cs_usaroulette30a&token=t1200000000&whl=30
 ============
-fla json
+fla json export
 
+480x320 854x480 1136x640
+D:\dev\SceneEditor\FlashExport\Converter.py
 C:\Program Files (x86)\Adobe\Adobe Flash CS6\Flash.exe
 D:\dev\TexturePacker\bin\TexturePacker.exe
+D:\dev\bink\binkc.exe
+D:\dev\ffmpeg\bin\ffmpeg.exe
+
  --skip-resource  video  particles
 =====================
 klinski
