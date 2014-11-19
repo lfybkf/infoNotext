@@ -1,0 +1,25 @@
+Пользователи
+
+[cwd_user] 
+ID=13821 'bulychev.d'
+
+[cwd_user_attributes] Атрибуты
+
+[cwd_directory]
+ID=1
+
+[cwd_group] Группы
+
+[cwd_membership] Членство в группах. Почему-то по имени, не по ИД
+
+========================
+Проекты
+
+[project] Проекты
+ID	pname					LEAD		pkey
+12351	Внутренний проект. Экономика		smoleva		VNU
+
+[projectcategory] Категории проектов
+
+[issuetype] Типы Запросов: Bug, Task
+[issuelinktype] Типы связей между Запросами: Child-Issue Dependency Blocks
