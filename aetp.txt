@@ -1,0 +1,13 @@
+ײ׀ּ מעקוע
+
+with 
+users as 
+(select ID, user_name, display_name, directory_id
+ from [jira43].[jira43scheme].[cwd_user] 
+ where user_name in ('borisov', 'kapunkin.v', 'pavlichev', 'samsonov.a'))
+ , links as
+ (SELECT [SOURCE] as src,[DESTINATION] as dst
+  FROM [jira43].[jira43scheme].[issuelink])
+ select top 100 * from links
+ 
+======================================

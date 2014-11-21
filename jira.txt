@@ -21,5 +21,10 @@ ID	pname					LEAD		pkey
 
 [projectcategory] Категории проектов
 
-[issuetype] Типы Запросов: Bug, Task
-[issuelinktype] Типы связей между Запросами: Child-Issue Dependency Blocks
+[jiraissue]		Запросы (where pkey='DB-978')
+[issuetype] 		Типы Запросов: Bug, Task
+[issuelink]		Связи
+[issuelinktype] 	Типы связей между Запросами: Child-Issue Dependency Blocks
+[jiraaction]            Комментарии и прочее
+===============================
+
